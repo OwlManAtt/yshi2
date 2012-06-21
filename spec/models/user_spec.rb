@@ -17,7 +17,7 @@ describe User do
   it "should be part of the management corp" do
     user = User.make!(:corporation => @mgmt_corp)
     
-    user.corporation.should eq(mgmt_corp)
+    user.corporation.should eq(@mgmt_corp)
     user.management_company?.should be true   
     user.portal_access?.should be true
   end
@@ -37,7 +37,7 @@ describe User do
   end
 
   it "should be a listed corp with no access" do
-    user = User.make!(:corportation => @no_access_corp)
+    user = User.make!(:corporation => @no_access_corp)
   end
 
   it "should have no access when deleted" do

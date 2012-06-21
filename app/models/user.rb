@@ -9,6 +9,6 @@ class User < ActiveRecord::Base
   end # portal_access
 
   def management_company?
-    corpoation ? corporation.manager? : false 
+    corporation ? corporation.manager? : false 
   end # management_company 
 end

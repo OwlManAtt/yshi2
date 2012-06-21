@@ -10,12 +10,12 @@ describe Corporation do
   it { should respond_to(:users) }
   
   it "should have users" do
-    corp = Corporation.make!
-    corp.users.should have_at_least(1).things
+    corp = Corporation.make!(:users => [User.make!, User.make!])
+    corp.users.should have_at_least(2).things
   end
 
   it "should have characters" do
-    corp = Corporation.make!
-    corp.characters.should have_at_least(1).things
+    corp = Corporation.make!(:characters => [Character.make!, Character.make!])
+    corp.characters.should have_at_least(2).things
   end
 end

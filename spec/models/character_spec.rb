@@ -11,12 +11,12 @@ describe Character do
   it { should respond_to(:deleted?) } 
 
   it "should have a user" do
-    char = Character.make!
+    char = Character.make!(:user => User.make!)
     char.user.should be_an_instance_of User
   end
 
   it "should have a corp" do
-    char = Character.make!
-    char.corporation should_be_an_instance_of Corporation
+    char = Character.make!(:corporation => Corporation.make!)
+    char.corporation.should be_an_instance_of Corporation
   end
 end
