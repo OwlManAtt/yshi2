@@ -14,5 +14,6 @@
 /log/*.log
 /tmp
 
-# Ignore the real DB config.
+# Ignore the config YMLs -- they have sensitive things in them~ 
 config/database.yml
+config/openid_providers.yml

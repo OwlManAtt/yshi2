@@ -1,4 +1,6 @@
 Yshi2::Application.routes.draw do
+  resources :authentications
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
