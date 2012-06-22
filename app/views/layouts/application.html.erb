@@ -2,13 +2,73 @@
 <html>
 <head>
   <title>Yasashii Industrial Toolkit</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+  <![endif]-->
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<%= render :partial => 'layouts/user_info' %>
-<%= yield %>
+  <div class='navbar navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='container'>
+        <a class='btn btn-navbar' data-toggle='collapse' data-target='.nav-collapse'>
+          <span class='icon-bar'></span>
+          <span class='icon-bar'></span>
+          <span class='icon-bar'></span>
+        </a>
+       
+        <%= render :partial => 'layouts/user' %>
 
+        <a class='brand' href='#'>YSHI</a>
+        <div class='nav-collapse'>
+          <ul class='nav nav-pills'>
+            <li>
+              <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+                <i class='icon-tags'></i> Inventory
+              </a>
+              <ul class='dropdown-menu'>
+                <li><a href='#'>Blueprints</a></li>
+                <li><a href='#'>Materials</a></li>
+                <li><a href='#'>Products</a></li>
+                <li class='divider'></li>
+                <li><a href='#'>All</a></li>
+              </ul>
+            </li>
+            <li><a href='#'><i class='icon-briefcase'></i> Research</a></li>
+            <li><a href='#'><i class='icon-calendar'></i> Schedule</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='container-fluid'>
+    <div class='row'>
+      <div class='span5'>
+        <h2>Screen Title (or breadcrumb?)</h2>
+      </div>
+      <div class='span7'>
+        <marquee>INTENSE MARKET ACTIVITY TICKER SCROLLING ACTION HERE -- GOONS GONNING UP FOUNTAIN AGAIN -- JITA HOSTS CELESTIAL HARDGAY CONCERT IN HONOUR OF 10,000,000,000,000,000,000,000,000 UNITS OF DANCERS MOVED! </marquee>
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class='span9'>
+        <%= yield %>
+      </div>
+      <div class='span3'>
+        hello sidebar
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class='span6 offset3'>
+        Copyright Lord Owl of Mudcrabia for President 2012 
+      </div>
+    </div>
+  </div>
 </body>
 </html>

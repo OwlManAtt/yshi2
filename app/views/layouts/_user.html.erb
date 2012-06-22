@@ -1,0 +1,17 @@
+<div class='btn-group pull-right'>
+  <% if current_user %>
+    <a class='btn dropdown-toggle' data-toggle='dropdown' href='#'>
+      <i class='icon-user'></i> <%= current_user.name %> <span class='caret'></span>
+    </a>
+    <ul class='dropdown-menu'>
+      <li><a href='#'>Preferences</a></li>
+      <li><a href='#'>API Keys</a></li>
+      <li><a href='#'>Characters</a></li>
+      <li><%= link_to "Logout", signout_path %></li>
+    </ul>
+  <% else %>
+    <%= link_to("/auth/google", :class => 'btn btn-large') do %>
+      <i class='icon-user'></i> Login
+    <% end %>
+  <% end %>
+</div>
