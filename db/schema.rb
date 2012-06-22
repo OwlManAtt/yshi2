@@ -13,14 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20120621034714) do
 
-  create_table "authentications", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "provider"
-    t.string   "uid"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "characters", :force => true do |t|
     t.string   "name",             :limit => 24,                    :null => false
     t.integer  "user_id"
@@ -45,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20120621034714) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name",           :limit => 35,                    :null => false
+    t.string   "name",           :limit => 60,                    :null => false
     t.boolean  "deleted",                      :default => false, :null => false
     t.integer  "corporation_id"
     t.datetime "created_at",                                      :null => false

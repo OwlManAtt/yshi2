@@ -1,6 +1,9 @@
 Yshi2::Application.routes.draw do
   resources :authentications
 
+  # OpenID callbacks
+  match '/auth/:provider/callback' => 'authentications#create'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
