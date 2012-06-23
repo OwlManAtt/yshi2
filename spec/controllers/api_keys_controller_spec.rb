@@ -20,7 +20,7 @@ require 'spec_helper'
 
 describe ApiKeysController do
   before(:all) do
-    @user = User.make!
+    @user = User.make!(:id => valid_session[:user_id])
   end
 
   # This should return the minimal set of attributes required to create a valid

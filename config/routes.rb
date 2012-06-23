@@ -1,8 +1,10 @@
 Yshi2::Application.routes.draw do
   resources :api_keys
 
-  # Session management
-  match '/auth/:provider/callback' => 'sessions#create'
+  # Session management & OpenID
+  resources :sessions, :only => [:create, :destroy]
+  match '/auth/:provider/callback' => 'sessions#create', :as => :auth
+  match '/auth/failure' => 'sessions#failure'
   match '/signout' => 'sessions#destroy', :as => :signout
 
   # The priority is based upon order of creation:
