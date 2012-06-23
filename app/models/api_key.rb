@@ -5,6 +5,7 @@ class ApiKey < ActiveRecord::Base
   belongs_to :user
   has_many :characters
 
+  validates_presence_of :identifier, :verification_code
   validates_inclusion_of :type, :in => ['Corporation','Account','Character'], :allow_nil => true
   validates_numericality_of :identifier
 

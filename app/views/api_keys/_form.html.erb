@@ -1,16 +1,7 @@
-<%= form_for @api_key, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :identifier, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :identifier, :class => 'number_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :verification_code, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :verification_code, :class => 'text_field' %>
-    </div>
-  </div>
+<%= simple_form_for @api_key, :html => { :class => 'form-horizontal' } do |f| %>
+
+  <%= f.input :identifier %>
+  <%= f.input :verification_code %>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
