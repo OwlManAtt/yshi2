@@ -1,4 +1,6 @@
 Yshi2::Application.routes.draw do
+  resources :api_keys
+
   # Session management
   match '/auth/:provider/callback' => 'sessions#create'
   match '/signout' => 'sessions#destroy', :as => :signout

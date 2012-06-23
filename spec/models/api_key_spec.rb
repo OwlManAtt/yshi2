@@ -34,6 +34,11 @@ describe ApiKey do
     end
   end
 
+  it "should only allow valid identifiers" do
+    @key.identifier = "Identifiers are integers."
+    @key.should_not be_valid
+  end
+
   it "should expire keys" do
     @key.expired?.should eq false
     

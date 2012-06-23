@@ -6,6 +6,7 @@ class ApiKey < ActiveRecord::Base
   has_many :characters
 
   validates_inclusion_of :type, :in => ['Corporation','Account','Character'], :allow_nil => true
+  validates_numericality_of :identifier
 
   def expired?
     return false unless expires_at

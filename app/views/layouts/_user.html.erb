@@ -5,7 +5,9 @@
     </a>
     <ul class='dropdown-menu'>
       <li><a href='#'><i class='icon-cog'></i> Preferences</a></li>
-      <li><a href='#'><i class='icon-lock'></i> API Keys</a></li>
+      <li><%= link_to api_keys_path do %>
+        <i class='icon-lock'></i> API Keys
+      <% end %></li>
       <li><a href='#'><i class='icon-list-alt'></i> Characters</a></li>
       <li><%= link_to signout_path do %>
        <i class='icon-off'></i> Logout 

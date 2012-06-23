@@ -23,7 +23,7 @@ Character.blueprint do
 end
 
 ApiKey.blueprint do
-  identifier { "KEY-#{sn}" }
+  identifier { sn }
   verification_code { "random gibberish" }
   access_mask { 268435455 }
   type { 'Account' }
