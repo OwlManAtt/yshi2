@@ -13,6 +13,7 @@ describe User do
   it { should respond_to(:management_company?) } 
   it { should respond_to(:deleted?) }
   it { should respond_to(:characters) }
+  it { should respond_to(:api_keys) }
 
   it "should be part of the management corp" do
     user = User.make!(:corporation => @mgmt_corp)

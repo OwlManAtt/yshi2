@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   belongs_to :corporation
   has_many :characters
+  has_many :api_keys
 
   attr_accessible :name, :deleted, :corporation
 

@@ -4,9 +4,8 @@ describe Character do
   it { should respond_to(:name) } 
   it { should respond_to(:user) } 
   it { should respond_to(:corporation) } 
-  it { should respond_to(:api_user_id) } 
   it { should respond_to(:api_character_id) } 
-  it { should respond_to(:api_key) } 
+  it { should respond_to(:api_key) }
   it { should respond_to(:director?) } 
   it { should respond_to(:deleted?) } 
 

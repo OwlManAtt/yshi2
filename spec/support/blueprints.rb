@@ -17,9 +17,18 @@ end
 
 Character.blueprint do
   name { "Chribba #{sn}" }
-  api_user_id { 123456 }
   api_character_id { 456 }
-  api_key { "D82H82HAH881A" }
   director { false }
   deleted { false }
+end
+
+ApiKey.blueprint do
+  identifier { "KEY-#{sn}" }
+  verification_code { "random gibberish" }
+  access_mask { 268435455 }
+  type { 'Account' }
+  expires_at { Date.today + 3.months }
+  last_polled_at { Time.now }
+  last_polled_result { 'OK' }
+  user { User.make! }
 end
