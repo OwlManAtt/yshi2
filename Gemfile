@@ -26,7 +26,7 @@ gem 'simple_form'
 gem 'omniauth-google'
 gem 'eaal', :git => 'https://github.com/yshi/eaal.git'
 
-# BAckground processing
+# Background processing
 gem 'delayed_job_active_record'
 gem 'daemons'
 
@@ -43,9 +43,11 @@ gem 'daemons'
 # gem 'capistrano'
 
 group :development, :test do
+  gem 'debugger'
   gem 'rspec-rails', '~> 2.0'
   gem 'machinist', '>= 2.0.0beta2'
-  gem 'debugger'
 end
 
-# To use debugger
+group :test do
+  gem 'webmock'
+end

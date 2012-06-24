@@ -58,12 +58,6 @@ describe ApiKey do
     @key.pollable?.should eq false
   end
 
-  # TODO figure out how to make this testable?
-  it "should fetch key info" do
-    pending
-    #@key.fetch_key_details
-  end
-
   it "should translate the access mask" do
     pending "Figure out access mask stuff~"
   end
