@@ -20,7 +20,7 @@ require 'spec_helper'
 
 describe ApiKeysController do
   before(:all) do
-    @user = User.make!(:id => valid_session[:user_id])
+    @user = User.make!()
   end
 
   # This should return the minimal set of attributes required to create a valid
@@ -34,7 +34,7 @@ describe ApiKeysController do
   # in order to pass any filters (e.g. authentication) defined in
   # ApiKeysController. Be sure to keep this updated too.
   def valid_session
-    {:user_id => 1}
+    {:user_id => @user.id}
   end
 
   def make_key(args = nil)
