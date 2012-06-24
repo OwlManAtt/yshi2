@@ -21,4 +21,19 @@ class ApiKey < ActiveRecord::Base
     
     true
   end
+
+  # FIXME: ghetto as fuck
+  def fetch_key_details 
+    eve = EAAL::API.new(identifier, verification_code)
+    eve.scope = 'account'
+    
+    # FIXME: Handle exceptions.
+    info = eve.APIKeyInfo
+    
+    self.type = info.key.type
+    self.access_mask = info.key.accessMask
+    self.last_polled_at = Time.now
+    self.last_polled_result = 'OK' 
+    self.save
+  end
 end

@@ -23,8 +23,12 @@ end
 
 gem 'jquery-rails'
 gem 'simple_form'
-
 gem 'omniauth-google'
+gem 'eaal', :git => 'https://github.com/yshi/eaal.git'
+
+# BAckground processing
+gem 'delayed_job_active_record'
+gem 'daemons'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

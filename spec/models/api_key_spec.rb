@@ -15,6 +15,7 @@ describe ApiKey do
   it { should respond_to(:expires_at) }
   it { should respond_to(:expired?) }
   it { should respond_to(:pollable?) }
+  it { should respond_to(:fetch_key_details) }
   
   it "should have a user" do
     @key.user.should be_an_instance_of User 
@@ -55,6 +56,12 @@ describe ApiKey do
     @key.expires_at = Date.today + 1.day
     @key.last_polled_result = 'FAIL'
     @key.pollable?.should eq false
+  end
+
+  # TODO figure out how to make this testable?
+  it "should fetch key info" do
+    pending
+    #@key.fetch_key_details
   end
 
   it "should translate the access mask" do
