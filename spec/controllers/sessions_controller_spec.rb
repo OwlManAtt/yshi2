@@ -16,20 +16,21 @@ describe SessionsController do
     it "creates a session for an existing user" do
       post :create
       assigns(:user).should be_an_instance_of(User)
-      assigns(:user).should_not be_a_new(User)
     end
 
     it "creates a new user" do
+      original_id = @user.id
       @user.destroy
 
       post :create
-      assigns(:user).should be_a_new(User)
+      assigns(:user).id.should_not eq original_id 
     end
 
     it "redirects on failure" do
-      post :create, {}
-      assigns(:user).should be nil
+      request.env.delete 'omniauth.auth'
+      post :create
 
+      assigns(:user).should eq nil
       response.should redirect_to('/')
     end
   end # /create
