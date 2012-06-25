@@ -32,3 +32,14 @@ ApiKey.blueprint do
   last_polled_result { 'OK' }
   user { User.make! }
 end
+
+ApiKey.blueprint(:virgin) do
+  identifier { sn }
+  verification_code { "random gibberish" }
+  access_mask { nil }
+  type { nil }
+  expires_at { nil } 
+  last_polled_at { nil } 
+  last_polled_result { nil }
+  user { User.make! }
+end
