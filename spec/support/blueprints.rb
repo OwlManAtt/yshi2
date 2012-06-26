@@ -13,13 +13,14 @@ Corporation.blueprint do
   deleted { false }
   portal_access { false }
   manager { false }
+  eve_id { sn }
 end
 
 Character.blueprint do
   name { "Chribba #{sn}" }
-  api_character_id { 456 }
   director { false }
   deleted { false }
+  eve_id { sn }
 end
 
 ApiKey.blueprint do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120626045451) do
+ActiveRecord::Schema.define(:version => 20120626052011) do
 
   create_table "api_keys", :force => true do |t|
     t.integer  "user_id",                                             :null => false
@@ -28,14 +28,13 @@ ActiveRecord::Schema.define(:version => 20120626045451) do
   end
 
   create_table "characters", :force => true do |t|
-    t.string   "name",             :limit => 24,                    :null => false
+    t.string   "name",           :limit => 24,                    :null => false
     t.integer  "user_id"
     t.integer  "corporation_id"
-    t.integer  "api_character_id"
-    t.boolean  "director",                       :default => false, :null => false
-    t.boolean  "deleted",                        :default => false, :null => false
-    t.datetime "created_at",                                        :null => false
-    t.datetime "updated_at",                                        :null => false
+    t.boolean  "director",                     :default => false, :null => false
+    t.boolean  "deleted",                      :default => false, :null => false
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
     t.integer  "api_key_id"
     t.integer  "eve_id"
   end
