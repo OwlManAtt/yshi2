@@ -8,6 +8,7 @@ describe Character do
   it { should respond_to(:api_key) }
   it { should respond_to(:director?) } 
   it { should respond_to(:deleted?) } 
+  it_should_behave_like "FromApi"
 
   it "should have a user" do
     char = Character.make!(:user => User.make!)

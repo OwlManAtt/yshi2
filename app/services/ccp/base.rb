@@ -2,6 +2,7 @@ require 'observer'
 
 module CCP
   class Base
+    attr_accessor :api
     attr_reader :key
 
     include Observable
@@ -9,6 +10,7 @@ module CCP
     def initialize(key)
       raise PollingError, 'Unusable key given.' unless key.pollable?
       @key = key
+      @api = EAAL::API.new(@key.identifier, @key.verification_code)
      
       # TODO: Does setting up the observer here violate the design pattern's 
       # tender asshole or something?

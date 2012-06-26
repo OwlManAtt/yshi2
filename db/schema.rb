@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120623181342) do
+ActiveRecord::Schema.define(:version => 20120626045451) do
 
   create_table "api_keys", :force => true do |t|
     t.integer  "user_id",                                             :null => false
@@ -37,16 +37,18 @@ ActiveRecord::Schema.define(:version => 20120623181342) do
     t.datetime "created_at",                                        :null => false
     t.datetime "updated_at",                                        :null => false
     t.integer  "api_key_id"
+    t.integer  "eve_id"
   end
 
   create_table "corporations", :force => true do |t|
     t.string   "name",          :limit => 50,                    :null => false
-    t.string   "ticker",        :limit => 5,                     :null => false
+    t.string   "ticker",        :limit => 5
     t.boolean  "deleted",                     :default => false, :null => false
     t.boolean  "portal_access",               :default => false, :null => false
     t.boolean  "manager",                     :default => false, :null => false
     t.datetime "created_at",                                     :null => false
     t.datetime "updated_at",                                     :null => false
+    t.integer  "eve_id"
   end
 
   create_table "delayed_jobs", :force => true do |t|

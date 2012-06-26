@@ -1,25 +1,33 @@
 require 'spec_helper'
 
 describe CCP do
-  before(:all) do
-    @key = ApiKey.make!
-    
-    # WebMock responses onry.
-    WebMock.disable_net_connect!
-    
-    # See yshi #2 - nil not supported
-    # EAAL.cache = nil 
-
+  
+  # WebMock nukes all the stubs after each test case is run. This can be used to
+  # set them back up...
+  def setup_stubs
     # Get a list of all mock responses && set them up
     Dir[Rails.root.join("spec/webmocks/ccp/**/*.xml.aspx")].each do |path|
       http_base = path.gsub(Rails.root.join('spec/webmocks/ccp/').to_s,'')
       
        # FIXME sure is hard-coded assumptions about EAAL
       uri = "http://api.eve-online.com/#{http_base}"
-      
-      stub_request(:get, uri).with(:query => {:keyid => @key.identifier, :vcode => @key.verification_code}).to_return(:body => File.new(path), :status => 200) 
+     
+      stub_request(:get, /#{uri}\?keyid=.*&vcode=.*/i).to_return(:body => File.new(path), :status => 200) 
     end
+  end
+
+  before(:all) do
+    # WebMock responses onry.
+    WebMock.disable_net_connect!
+    
+    # See yshi #2 - nil not supported
+    # EAAL.cache = nil 
   end # setup
+
+  before(:each) do
+    @key = ApiKey.make!
+    setup_stubs
+  end
 
   after(:all) do
     WebMock.allow_net_connect!
@@ -34,6 +42,7 @@ describe CCP do
   describe "::Base" do
     subject { CCP::Base.new(ApiKey.make!) }
     it { should respond_to(:key) }
+    it { should respond_to(:api) }
 
     it "should reject bad keys" do
       key = ApiKey.make!(:expires_at => Date.today - 5.days)
@@ -77,9 +86,42 @@ describe CCP do
 
   end # AccessObserver
 
+  describe "::Vital" do
+    subject { CCP::Vital.new(@key) }
+    it { should respond_to(:fetch_info) }
+  
+    it "should populate key details" do
+      key = ApiKey.make!(:virgin)
+      api = CCP::Vital.new(key)
+      api.fetch_info
+
+      api.key.access_mask.should eq 268435455 
+    end
+
+    it "should create characters" do
+      api = CCP::Vital.new(@key)
+      api.fetch_info
+ 
+      api.key.characters.map(&:name).should =~ ['OwlManAtt', 'Derp']
+    end
+
+    it "should associate characters to the key's user" do
+      pending "TODO"
+    end
+
+    it "should create corps" do
+      corp_id_list = [1018389948, 1000168]
+
+      api = CCP::Vital.new(@key)
+      api.fetch_info
+      
+      Corporation.where(:eve_id => corp_id_list).map(&:eve_id).should =~ corp_id_list
+    end
+  end # key
+
   describe "::Character" do
     subject { CCP::Character.new(ApiKey.make!) }
-    pending 
+    pending "Character details still TODO" 
   end # Character
 
 end

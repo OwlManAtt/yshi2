@@ -8,6 +8,7 @@ describe Corporation do
   it { should respond_to(:deleted?) }
   it { should respond_to(:characters) }
   it { should respond_to(:users) }
+  it_should_behave_like "FromApi"
   
   it "should have users" do
     corp = Corporation.make!(:users => [User.make!, User.make!])
