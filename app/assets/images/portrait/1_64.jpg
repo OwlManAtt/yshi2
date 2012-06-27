@@ -1,0 +1,44 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	
+	Creative crisis
+
+</title>
+    <link href="/Content/Site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    
+    <div id="headerBGContainer">
+        <div id="headerContainer">
+            <div id="logoContainer"><a href="/Home"><img src="/Content/images/gateLogo.png" height="33" width="217" border="0" alt="EVE Online | EVE Gate" /></a></div>
+            <div class="cleared"></div>
+        </div>
+    </div>
+    <div class="contentOuter">
+        <div class="contentInner">
+            
+    <h1>Creative crisis</h1>
+    <p>
+        Sorry, but no. I can't serve you images right now. I tried hard, but there is so much stuff going on at the moment
+        that I am simply unable to give you the image you want. You know how hard it is? Finding the right images in the 
+        database, doing all the resizing work? You have to go through ALL of the pixels! There are MILLIONS of them, even in 
+        a single image. And then comes the interpolation, really boring stuff. I'm done with this. See you at the Bahamas! - xoxo
+    </p>
+    <p style="color: Yellow">
+        <b>Sysadmin update:</b><br />
+        Dear user, we just found out that our beloved image server went on strike and flew off with the first plane. This is not
+        what we were feeding it with electricity and internet for and is completely unacceptable. We sent our best agents to track 
+        him down so that he can return to work ASAP. Please bear with us, we are on it. - the Sysadmin Team
+    </p>
+
+        </div>
+    </div>
+    <div id="footer">
+        <span class="grayText">Copyright &copy; <a href="http://www.ccpgames.com" target="_blank">CCP</a> 1997-2010</span><br />
+        <span class="grayText" style="font-weight: bold;">Branch EVE-EVE-TRANQUILITY | Version 1.1.4.16782 (278922) | Server LHR-EVG-WEB005</span>
+    </div>
+</body>
+</html>

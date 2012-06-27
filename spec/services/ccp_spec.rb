@@ -6,10 +6,13 @@ describe CCP do
   # set them back up...
   def setup_stubs
     # Get a list of all mock responses && set them up
+    #
+    # TODO This should cache the req => response content instead of looking at the FS
+    # for every test.
     Dir[Rails.root.join("spec/webmocks/ccp/**/*.xml.aspx")].each do |path|
       http_base = path.gsub(Rails.root.join('spec/webmocks/ccp/').to_s,'')
       
-       # FIXME sure is hard-coded assumptions about EAAL
+      # FIXME sure is hard-coded assumptions about EAAL
       uri = "http://api.eve-online.com/#{http_base}"
      
       stub_request(:get, /#{uri}\?keyid=.*&vcode=.*/i).to_return(:body => File.new(path), :status => 200) 

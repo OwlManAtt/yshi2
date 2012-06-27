@@ -7,6 +7,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:identifier) %></th>
       <th><%= model_class.human_attribute_name(:verification_code) %></th>
+      <th>Characters</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -15,6 +16,19 @@
       <tr>
         <td><%= api_key.identifier %></td>
         <td><%= api_key.verification_code %></td>
+        <td>
+          <% if api_key.characters.size == 0 %>
+            <% if api_key.last_polled_at %>
+              <strong>Failed</strong>
+            <% else %>
+              <em>Unknown - Checking!</em>
+            <% end %>
+          <% else %>
+            <% api_key.characters.each do |char| %>
+                <%= link_to image_tag('portrait/1_32.jpg', :alt => char.name), '#', :rel => 'tooltip', 'data-original-title' => char.name, :style => 'display: inline-block' %>
+            <% end %> 
+          <% end %>
+        </td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_api_key_path(api_key), :class => 'btn btn-mini' %>

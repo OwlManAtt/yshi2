@@ -9,6 +9,8 @@ class ApiKey < ActiveRecord::Base
   validates_inclusion_of :type, :in => ['Corporation','Account','Character'], :allow_nil => true
   validates_numericality_of :identifier
 
+  after_create :poll
+
   def expired?
     return false unless expires_at
     expires_at < Date.today
@@ -36,4 +38,10 @@ class ApiKey < ActiveRecord::Base
     self.last_polled_result = 'OK' 
     self.save
   end
+  
+  private
+  def poll()
+    CCP::Vital.new(self).delay.fetch_info 
+  end
+
 end
