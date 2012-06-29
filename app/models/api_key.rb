@@ -9,7 +9,7 @@ class ApiKey < ActiveRecord::Base
   validates_inclusion_of :type, :in => ['Corporation','Account','Character'], :allow_nil => true
   validates_numericality_of :identifier
 
-  after_create :poll
+  after_create :poll, :if => :pollable?
 
   def expired?
     return false unless expires_at
