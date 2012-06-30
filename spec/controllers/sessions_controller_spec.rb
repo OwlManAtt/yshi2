@@ -36,6 +36,12 @@ describe SessionsController do
   end # /create
 
   describe "POST destroy" do
-    pending
+    it "should log you out" do
+      session[:user_id] = @user.id
+
+      post :destroy
+      session[:user_id].should be nil
+      response.should redirect_to('/')
+    end
   end # /destroy
 end
