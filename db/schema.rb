@@ -11,20 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120629024453) do
+ActiveRecord::Schema.define(:version => 20120630005104) do
 
   create_table "api_keys", :force => true do |t|
-    t.integer  "user_id",                                             :null => false
-    t.integer  "identifier",                                          :null => false
-    t.string   "verification_code",  :limit => 64,                    :null => false
+    t.integer  "user_id",                                                     :null => false
+    t.integer  "identifier",                                                  :null => false
+    t.string   "verification_code",          :limit => 64,                    :null => false
     t.integer  "access_mask"
     t.string   "type"
     t.date     "expires_at"
     t.datetime "last_polled_at"
-    t.string   "last_polled_result"
-    t.boolean  "deleted",                          :default => false
-    t.datetime "created_at",                                          :null => false
-    t.datetime "updated_at",                                          :null => false
+    t.boolean  "deleted",                                  :default => false
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
+    t.integer  "last_polled_result_code"
+    t.string   "last_polled_result_message"
+    t.boolean  "permanent_failure",                        :default => false, :null => false
   end
 
   create_table "characters", :force => true do |t|

@@ -11,7 +11,9 @@ describe ApiKey do
   it { should respond_to(:characters) }
   it { should respond_to(:deleted?) }
   it { should respond_to(:last_polled_at) }
-  it { should respond_to(:last_polled_result) }
+  it { should respond_to(:last_polled_result_code) }
+  it { should respond_to(:last_polled_result_message) }
+  it { should respond_to(:permanent_failure?) }
   it { should respond_to(:expires_at) }
   it { should respond_to(:expired?) }
   it { should respond_to(:pollable?) }
@@ -54,7 +56,7 @@ describe ApiKey do
     @key.pollable?.should eq false
 
     @key.expires_at = Date.today + 1.day
-    @key.last_polled_result = 'FAIL'
+    @key.permanent_failure = true 
     @key.pollable?.should eq false
   end
 

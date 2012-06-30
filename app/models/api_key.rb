@@ -19,7 +19,7 @@ class ApiKey < ActiveRecord::Base
   def pollable?
     return false if deleted?
     return false if expired?
-    return false unless last_polled_result == 'OK' or !last_polled_result  
+    return false if permanent_failure?
     
     true
   end
@@ -35,7 +35,8 @@ class ApiKey < ActiveRecord::Base
     self.type = info.key.type
     self.access_mask = info.key.accessMask
     self.last_polled_at = Time.now
-    self.last_polled_result = 'OK' 
+    self.last_polled_result_code = 0 
+    self.last_polled_result_message = 'OK' 
     self.save
   end
   

@@ -12,8 +12,6 @@ module CCP
       @key = key
       @api = EAAL::API.new(@key.identifier, @key.verification_code)
      
-      # TODO: Does setting up the observer here violate the design pattern's 
-      # tender asshole or something?
       AccessObserver.new(self)
     end
   

@@ -47,7 +47,7 @@ describe CCP do
     it { should respond_to(:key) }
     it { should respond_to(:api) }
 
-    it "should reject bad keys" do
+    it "should reject known-bad keys" do
       key = ApiKey.make!(:expires_at => Date.today - 5.days)
       expect { CCP::Base.new(key) }.to raise_error CCP::PollingError
     end 
@@ -67,6 +67,41 @@ describe CCP do
       base.after_api_access
       base.key.last_polled_at.should_not eq nil
     end
+
+    it "should handle API outages" do
+      stub_request(:get, /.*/i).to_timeout
+      
+      # TODO: Think of a way to do this that doesn't involve 
+      # crossing in to the childrens of Base. 
+      key = ApiKey.make!(:virgin)
+      api = CCP::Vital.new(key)
+      expect { api.fetch_info }.to raise_error
+
+      api.key.last_polled_result_code.should > 0
+      api.key.permanent_failure?.should eq false 
+    end
+
+    it "should handle temporary API failure codes" do
+      stub_request(:get, /.*/i).to_return(:body => File.new('spec/webmocks/ccp/internal_error_518.xml'), :status => 200) 
+
+      key = ApiKey.make!(:virgin)
+      api = CCP::Vital.new(key)
+      expect { api.fetch_info }.to raise_error
+
+      api.key.last_polled_result_code.should > 0
+      api.key.permanent_failure?.should eq false 
+    end
+
+    it "should handle permanent API failure codes" do
+      stub_request(:get, /.*/i).to_return(:body => File.new('spec/webmocks/ccp/auth_error_203.xml'), :status => 200) 
+
+      key = ApiKey.make!(:virgin)
+      api = CCP::Vital.new(key)
+      expect { api.fetch_info }.to raise_error
+
+      api.key.last_polled_result_code.should > 0
+      api.key.permanent_failure?.should eq true 
+    end
   end # Base 
 
   describe "::AccessObserver" do
@@ -81,10 +116,10 @@ describe CCP do
       @obs.update
 
       @key.last_polled_at.should > orig_polled_at 
-      @key.last_polled_result.should eq 'OK'
+      @key.last_polled_result_code.should eq 0
 
       @obs.update(CCP::PollingError.new())
-      @key.last_polled_result.should eq 'ERROR'
+      @key.last_polled_result_code.should > 0
     end 
 
   end # AccessObserver

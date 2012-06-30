@@ -30,7 +30,9 @@ ApiKey.blueprint do
   type { 'Account' }
   expires_at { Date.today + 3.months }
   last_polled_at { Time.now }
-  last_polled_result { 'OK' }
+  last_polled_result_code { 200 }
+  last_polled_result_message { 'OK' }
+  permanent_failure { false }
   user { User.make! }
 end
 
@@ -41,6 +43,8 @@ ApiKey.blueprint(:virgin) do
   type { nil }
   expires_at { nil } 
   last_polled_at { nil } 
-  last_polled_result { nil }
+  last_polled_result_code { nil }
+  last_polled_result_message { nil }
+  permanent_failure { false }
   user { User.make! }
 end
