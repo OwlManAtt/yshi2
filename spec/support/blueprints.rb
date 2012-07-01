@@ -48,3 +48,28 @@ ApiKey.blueprint(:virgin) do
   permanent_failure { false }
   user { User.make! }
 end
+
+Item::Type.blueprint do
+  name { "Test Item" }
+  description { "cool item bro" }
+  radius { 1.0 }
+  mass { 1.0 }
+  volume { 1.0 }
+  capacity { 1.0 }
+  units_per_run { 300 }
+  npc_price { 1000.00 }
+  group 
+end
+
+Item::Group.blueprint do
+  name { "Test Group" }
+  description { "cool group bro" }
+  manufacturable { true } 
+  recyclable { true }
+  category 
+end
+
+Item::Category.blueprint do
+  name { "Test Category" }
+  description { "cool category bro" }
+end

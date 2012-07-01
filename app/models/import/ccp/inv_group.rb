@@ -17,7 +17,7 @@ module Import::CCP
         :description => description,
         :manufacturable => allowManufacture.to_bn,
         :recyclable => allowRecycler.to_bn,
-        :item_type_category_id => categoryID,
+        :category_id => categoryID,
       }
     end # etl_map
   end

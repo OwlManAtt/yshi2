@@ -1,5 +1,5 @@
 class Item::Type < ActiveRecord::Base 
-  belongs_to :type_group
+  belongs_to :group
 
-  [:manufacturable?, :recyclable?].each { |method| delegate method, :to => :type_group, :allow_nil => true }
+  [:manufacturable?, :recyclable?].each { |method| delegate method, :to => :group, :allow_nil => true }
 end

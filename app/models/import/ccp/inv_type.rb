@@ -20,7 +20,7 @@ module Import::CCP
         :capacity => capacity,
         :units_per_run => portionSize,
         :npc_price => basePrice,
-        :item_type_group_id => groupID,
+        :group_id => groupID,
       }
     end # etl_map
   end

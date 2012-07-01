@@ -1,8 +1,8 @@
 module Import::CCP
   class ETL
     IMPORT_TABLES = { 
-      Import::CCP::InvCategory => Item::TypeCategory,
-      Import::CCP::InvGroup => Item::TypeGroup,
+      Import::CCP::InvCategory => Item::Category,
+      Import::CCP::InvGroup => Item::Group,
       Import::CCP::InvType => Item::Type,
     }
 
@@ -17,6 +17,11 @@ module Import::CCP
           obj.save
         end
       end
+      
+      # Get BP details
+      # Get BP BoM (raw)
+      # Get BP BoM (component)
+      # Get BP BoM (skill)
 
     end
 

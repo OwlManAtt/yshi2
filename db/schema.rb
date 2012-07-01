@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120630005104) do
+ActiveRecord::Schema.define(:version => 20120701194900) do
 
   create_table "api_keys", :force => true do |t|
     t.integer  "user_id",                                                     :null => false
@@ -68,36 +68,36 @@ ActiveRecord::Schema.define(:version => 20120630005104) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
-  create_table "item_type_categories", :force => true do |t|
+  create_table "item_categories", :force => true do |t|
     t.string   "name",        :limit => 30, :null => false
     t.text     "description"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
   end
 
-  create_table "item_type_groups", :force => true do |t|
-    t.string   "name",                  :limit => 60, :null => false
+  create_table "item_groups", :force => true do |t|
+    t.string   "name",           :limit => 60, :null => false
     t.text     "description"
-    t.boolean  "manufacturable",                      :null => false
-    t.boolean  "recyclable",                          :null => false
-    t.integer  "item_type_category_id",               :null => false
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.boolean  "manufacturable",               :null => false
+    t.boolean  "recyclable",                   :null => false
+    t.integer  "category_id",                  :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "item_types", :force => true do |t|
-    t.string   "name",               :limit => 100,                                :null => false
+    t.string   "name",            :limit => 100,                                :null => false
     t.text     "description"
-    t.decimal  "radius",                            :precision => 10, :scale => 0
-    t.decimal  "mass",                              :precision => 10, :scale => 0
-    t.decimal  "volume",                            :precision => 10, :scale => 0
-    t.decimal  "capacity",                          :precision => 10, :scale => 0
+    t.decimal  "radius",                         :precision => 10, :scale => 0
+    t.decimal  "mass",                           :precision => 10, :scale => 0
+    t.decimal  "volume",                         :precision => 10, :scale => 0
+    t.decimal  "capacity",                       :precision => 10, :scale => 0
     t.integer  "units_per_run"
-    t.decimal  "npc_price",                         :precision => 10, :scale => 0
-    t.integer  "item_type_group_id",                                               :null => false
+    t.decimal  "npc_price",                      :precision => 10, :scale => 0
+    t.integer  "group_id",                                                      :null => false
     t.integer  "market_group_id"
-    t.datetime "created_at",                                                       :null => false
-    t.datetime "updated_at",                                                       :null => false
+    t.datetime "created_at",                                                    :null => false
+    t.datetime "updated_at",                                                    :null => false
   end
 
   create_table "users", :force => true do |t|
