@@ -58,6 +58,7 @@ Item::Type.blueprint do
   capacity { 1.0 }
   units_per_run { 300 }
   npc_price { 1000.00 }
+  blueprint { false }
   group 
 end
 

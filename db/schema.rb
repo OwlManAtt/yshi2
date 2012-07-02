@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120701194900) do
+ActiveRecord::Schema.define(:version => 20120702022109) do
 
   create_table "api_keys", :force => true do |t|
     t.integer  "user_id",                                                     :null => false
@@ -68,6 +68,32 @@ ActiveRecord::Schema.define(:version => 20120701194900) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
+  create_table "item_blueprint_materials", :force => true do |t|
+    t.integer "blueprint_type_id",                  :null => false
+    t.integer "material_type_id",                   :null => false
+    t.integer "quantity",                           :null => false
+    t.float   "damage_per_job",    :default => 1.0
+    t.string  "type",                               :null => false
+  end
+
+  create_table "item_blueprint_skills", :force => true do |t|
+    t.integer "blueprint_type_id", :null => false
+    t.integer "skill_type_id",     :null => false
+    t.integer "minimum_level",     :null => false
+  end
+
+  create_table "item_blueprints", :force => true do |t|
+    t.integer "blueprint_type_id",          :null => false
+    t.integer "product_type_id",            :null => false
+    t.integer "production_time"
+    t.integer "productivity_modifier"
+    t.integer "waste_factor"
+    t.integer "production_limit"
+    t.integer "research_material_time"
+    t.integer "research_productivity_time"
+    t.integer "copy_time"
+  end
+
   create_table "item_categories", :force => true do |t|
     t.string   "name",        :limit => 30, :null => false
     t.text     "description"
@@ -86,7 +112,7 @@ ActiveRecord::Schema.define(:version => 20120701194900) do
   end
 
   create_table "item_types", :force => true do |t|
-    t.string   "name",            :limit => 100,                                :null => false
+    t.string   "name",            :limit => 100,                                                   :null => false
     t.text     "description"
     t.decimal  "radius",                         :precision => 10, :scale => 0
     t.decimal  "mass",                           :precision => 10, :scale => 0
@@ -94,10 +120,11 @@ ActiveRecord::Schema.define(:version => 20120701194900) do
     t.decimal  "capacity",                       :precision => 10, :scale => 0
     t.integer  "units_per_run"
     t.decimal  "npc_price",                      :precision => 10, :scale => 0
-    t.integer  "group_id",                                                      :null => false
+    t.integer  "group_id",                                                                         :null => false
     t.integer  "market_group_id"
-    t.datetime "created_at",                                                    :null => false
-    t.datetime "updated_at",                                                    :null => false
+    t.datetime "created_at",                                                                       :null => false
+    t.datetime "updated_at",                                                                       :null => false
+    t.boolean  "blueprint",                                                     :default => false, :null => false
   end
 
   create_table "users", :force => true do |t|

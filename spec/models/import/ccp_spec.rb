@@ -50,4 +50,20 @@ describe Import::CCP do
     it { should respond_to(:etl_map) }
   end # item
 
+  describe Import::CCP::InvBlueprintType do
+    subject { Import::CCP::InvBlueprintType.new }
+
+    it { should respond_to(:blueprintTypeID) }
+    it { should respond_to(:productTypeID) }
+    it { should respond_to(:productionTime) }
+    it { should respond_to(:researchProductivityTime) }
+    it { should respond_to(:researchMaterialTime) }
+    it { should respond_to(:researchCopyTime) }
+    it { should respond_to(:productivityModifier) }
+    it { should respond_to(:wasteFactor) }
+    it { should respond_to(:maxProductionLimit) }
+
+    it { should respond_to(:etl_map) }
+  end # bp details
+
 end

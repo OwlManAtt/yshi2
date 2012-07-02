@@ -11,6 +11,7 @@ describe Item do
     it { should respond_to(:group) }
     it { should respond_to(:manufacturable?) }
     it { should respond_to(:recyclable?) }
+    it { should respond_to(:blueprint?) }
     # TODO it { should respond_to(:market_group) }
 
     it "should have a group" do
@@ -50,6 +51,40 @@ describe Item do
       cat = Item::Category.make!(:groups => [Item::Group.make!])
       cat.groups.size.should > 0
     end
-
   end # Category
+
+  describe Item::Blueprint do
+    subject { Item::Blueprint.new }
+
+    it { should respond_to(:type) }
+    it { should respond_to(:product_type) }
+    it { should respond_to(:production_time) }
+    it { should respond_to(:productivity_modifier) }
+    it { should respond_to(:waste_factor) }
+    it { should respond_to(:production_limit) }
+    it { should respond_to(:research_material_time) }
+    it { should respond_to(:research_productivity_time) }
+    it { should respond_to(:copy_time) }
+
+    it { should respond_to(:materials) }
+    it { should respond_to(:skills) }
+  end
+
+  describe Item::BlueprintMaterial do
+    subject { Item::BlueprintMaterial.new }
+
+    it { should respond_to(:blueprint) }
+    it { should respond_to(:material) }
+    it { should respond_to(:quantity) }
+    it { should respond_to(:damage_per_job) }
+    it { should respond_to(:type) }
+  end
+
+  describe Item::BlueprintSkill do
+    subject { Item::BlueprintSkill.new }
+
+    it { should respond_to(:blueprint) }
+    it { should respond_to(:skill) }
+    it { should respond_to(:minimum_level) }
+  end
 end
