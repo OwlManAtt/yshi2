@@ -66,4 +66,19 @@ describe Import::CCP do
     it { should respond_to(:etl_map) }
   end # bp details
 
+  describe Import::CCP::InvBlueprintMaterial do
+    subject { Import::CCP::InvBlueprintMaterial.new }
+    
+    it { should respond_to(:blueprintTypeID) } 
+    it { should respond_to(:materialTypeID) }
+    it { should respond_to(:quantity) }
+    it { should respond_to(:typeID) }
+
+    it { should respond_to(:etl_map) }
+  end
+
+  #describe Import::CCP::RamTypeRequirement do
+  #  subject { Import::CCP::RamTypeRequirement.new }
+  #end
+
 end

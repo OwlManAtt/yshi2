@@ -6,13 +6,14 @@ module Import::CCP
     self.primary_key = 'blueprintTypeID'
 
     belongs_to :inv_type, :foreign_key => 'blueprintTypeID'
+    has_many :inv_blueprint_materials, :primary_key => :productTypeID, :foreign_key => :typeID
 
     default_scope includes(:inv_type).where({:invTypes => {:published => 1}})
 
     def etl_map
       {
         :blueprint_type_id => blueprintTypeID,
-        :product_type => productTypeID,
+        :product_type_id => productTypeID,
         :production_time => productionTime,
         :productivity_modifier => productivityModifier,
         :waste_factor => wasteFactor,
