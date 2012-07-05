@@ -77,8 +77,16 @@ describe Import::CCP do
     it { should respond_to(:etl_map) }
   end
 
-  #describe Import::CCP::RamTypeRequirement do
-  #  subject { Import::CCP::RamTypeRequirement.new }
-  #end
+  describe Import::CCP::RamTypeRequirement do
+    subject { Import::CCP::RamTypeRequirement.new }
+    
+    it { should respond_to(:typeID) } 
+    it { should respond_to(:requiredTypeID) }
+    it { should respond_to(:quantity) }
+    it { should respond_to(:damagePerJob) }
+    it { should respond_to(:typeID) }
+
+    it { should respond_to(:etl_map) }
+  end
 
 end

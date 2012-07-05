@@ -40,23 +40,28 @@ module Import::CCP
     end
 
     def self.copy_bill_of_materials
+
+      # Get BP BoM, raw & component.
+      #
+      # Note that the lack of PK in these tables seriously inhibits
+      # Rails' magic mojo. #find_each() and eager loading are both unusable here because
+      # of all the goddamn opinions hardcoded everywhere in the framework.
       material_list = []
 
-      # Get BP BoM (raw) -- Note that find_each requires a PK to order by, so it's not used here.
-      type_table = Import::CCP::InvType.arel_table
-      raw_attr = {:type => 'raw', :damage_per_job => 1.0}
-      
-      # Note that this utilizes a relationship and it is NOT eagerly loaded.
-      # Rails chokes to death on #includes() with you have no PK.
-      Import::CCP::InvBlueprintMaterial.joins({:inv_blueprint_type => :inv_type}).where(type_table[:published].eq(1)).each do |import|
-        mat = Item::BlueprintMaterial.new    
-        mat.assign_attributes(import.etl_map.merge(raw_attr), :without_protection => true)
-        material_list << mat
-      end
-      
-      # Get BP BoM (component)
+      [
+        Proc.new { Import::CCP::InvBlueprintMaterial.raw.limit(10) }, 
+        Proc.new { Import::CCP::RamTypeRequirement.components.limit(10) },
+      ].each do |scope|
+        material_list += scope.call.map do |import|
+          mat = Item::BlueprintMaterial.new
+          mat.assign_attributes(import.etl_map, :without_protection => true)
 
-      # Save all the materials...
+          mat
+        end
+      end
+
+      # Bulk INSERT them. 
+      puts material_list.inspect
       Item::BlueprintMaterial.import(material_list)
 
       # Get BP BoM (skill)

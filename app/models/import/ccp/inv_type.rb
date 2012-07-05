@@ -5,7 +5,7 @@ module Import::CCP
     self.table_name = 'invTypes'
     self.primary_key = 'typeID'
     
-    belongs_to :inv_group
+    belongs_to :inv_group, :primary_key => :groupID, :foreign_key => :groupID
 
     default_scope where(:published => 1)
 
