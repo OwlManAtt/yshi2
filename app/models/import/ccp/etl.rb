@@ -49,8 +49,8 @@ module Import::CCP
       material_list = []
 
       [
-        Proc.new { Import::CCP::InvBlueprintMaterial.raw.limit(10) }, 
-        Proc.new { Import::CCP::RamTypeRequirement.components.limit(10) },
+        Proc.new { Import::CCP::InvBlueprintMaterial.raw }, 
+        Proc.new { Import::CCP::RamTypeRequirement.components },
       ].each do |scope|
         material_list += scope.call.map do |import|
           mat = Item::BlueprintMaterial.new
@@ -65,6 +65,14 @@ module Import::CCP
       Item::BlueprintMaterial.import(material_list)
 
       # Get BP BoM (skill)
+      skill_list = Import::CCP::RamTypeRequirement.skills.map do |import|
+        mat = Item::BlueprintSkill.new
+        mat.assign_attributes(import.etl_map(:skills), :without_protection => true)
+
+        mat
+      end
+
+      Item::BlueprintSkill.import(skill_list)
     end
 
     def self.clear_tables

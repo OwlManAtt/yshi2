@@ -25,6 +25,7 @@ module Import::CCP
       if scope == :skills
         map.except!(:damage_per_job, :type)
         map[:minimum_level] = map.delete(:quantity)
+        map[:skill_type_id] = map.delete(:material_type_id)
       end
 
       return map
