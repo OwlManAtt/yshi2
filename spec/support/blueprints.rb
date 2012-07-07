@@ -74,3 +74,29 @@ Item::Category.blueprint do
   name { "Test Category" }
   description { "cool category bro" }
 end
+
+Item::Blueprint.blueprint do
+  production_time { 1300 }
+  productivity_modifier { 1 }
+  waste_factor { 4 }
+  production_limit { 300 }
+  research_material_time { 1300 }
+  research_productivity_time { 1300 }
+  copy_time { 800 }
+  product_type
+  blueprint_type
+end
+
+Item::BlueprintMaterial.blueprint do
+  quantity { 200 }
+  damage_per_job { 1.0 }
+  type { 'raw' }
+  blueprint 
+  material
+end
+
+Item::BlueprintSkill.blueprint do
+  minimum_level { 1 }
+  blueprint
+  skill
+end

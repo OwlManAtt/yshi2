@@ -12,7 +12,7 @@ module Import::CCP
 
     def etl_map
       {
-        :blueprint_type_id => blueprintTypeID,
+        :id => blueprintTypeID,
         :product_type_id => productTypeID,
         :production_time => productionTime,
         :productivity_modifier => productivityModifier,

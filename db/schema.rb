@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120702022109) do
+ActiveRecord::Schema.define(:version => 20120707233156) do
 
   create_table "api_keys", :force => true do |t|
     t.integer  "user_id",                                                     :null => false
@@ -83,7 +83,6 @@ ActiveRecord::Schema.define(:version => 20120702022109) do
   end
 
   create_table "item_blueprints", :force => true do |t|
-    t.integer "blueprint_type_id",          :null => false
     t.integer "product_type_id",            :null => false
     t.integer "production_time"
     t.integer "productivity_modifier"

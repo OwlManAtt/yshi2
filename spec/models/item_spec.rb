@@ -56,7 +56,7 @@ describe Item do
   describe Item::Blueprint do
     subject { Item::Blueprint.new }
 
-    it { should respond_to(:type) }
+    it { should respond_to(:blueprint_type) }
     it { should respond_to(:product_type) }
     it { should respond_to(:production_time) }
     it { should respond_to(:productivity_modifier) }
@@ -68,6 +68,16 @@ describe Item do
 
     it { should respond_to(:materials) }
     it { should respond_to(:skills) }
+
+    it "should have materials" do
+      bp = Item::Blueprint.make!(:blueprint_materials => [Item::BlueprintMaterial.make!] ) 
+      bp.materials.size.should > 0
+    end
+
+    it "should have skills" do
+      bp = Item::Blueprint.make!(:blueprint_skills => [Item::BlueprintSkill.make!] ) 
+      bp.skills.size.should > 0 
+    end
   end
 
   describe Item::BlueprintMaterial do
