@@ -120,4 +120,45 @@ describe Import::CCP do
     it { should respond_to(:etl_map) }
   end
 
+  describe "Map" do
+    describe Import::CCP::MapRegion do
+      subject { Import::CCP::MapRegion.new }
+
+      it { should respond_to(:regionID) }
+      it { should respond_to(:regionName) }
+
+      it { should respond_to(:etl_map) }
+    end
+
+    describe Import::CCP::MapConstellation do
+      subject { Import::CCP::MapConstellation.new } 
+
+      it { should respond_to(:constellationID) }
+      it { should respond_to(:regionID) }
+      it { should respond_to(:constellationName) }
+
+      it { should respond_to(:etl_map) }
+    end
+
+    describe Import::CCP::MapSolarSystem do
+      subject { Import::CCP::MapSolarSystem.new } 
+
+      it { should respond_to(:solarSystemID) }
+      it { should respond_to(:constellationID) }
+      it { should respond_to(:solarSystemName) }
+
+      it { should respond_to(:etl_map) }
+    end
+
+    describe Import::CCP::StaStation do
+      subject { Import::CCP::StaStation.new } 
+
+      it { should respond_to(:stationID) }
+      it { should respond_to(:solarSystemID) }
+      it { should respond_to(:stationName) }
+
+      it { should respond_to(:etl_map) }
+    end
+  end
+
 end
