@@ -12,11 +12,16 @@ describe Item do
     it { should respond_to(:manufacturable?) }
     it { should respond_to(:recyclable?) }
     it { should respond_to(:blueprint?) }
-    # TODO it { should respond_to(:market_group) }
+    it { should respond_to(:market_group) }
 
     it "should have a group" do
       item = Item::Type.make!
       item.group.should_not be nil
+    end
+
+    it "should have a market group" do
+      item = item::Type.make!
+      item.market_group.should_not be nil
     end
   end # Type
 
@@ -53,11 +58,20 @@ describe Item do
     end
   end # Category
 
+#  describe Item::MarketGroup do
+#    subject { Item::MarketGroup.new }
+#
+#    it { should respond_to(:name) }
+#    it { should respond_to(:description) }
+#    it { should respond_to(:parent) }
+#    it { should respond_to(:children) }
+#  end
+
   describe Item::Blueprint do
     subject { Item::Blueprint.new }
 
-    it { should respond_to(:blueprint_type) }
-    it { should respond_to(:product_type) }
+    it { should respond_to(:blueprint) }
+    it { should respond_to(:product) }
     it { should respond_to(:production_time) }
     it { should respond_to(:productivity_modifier) }
     it { should respond_to(:waste_factor) }
@@ -65,6 +79,7 @@ describe Item do
     it { should respond_to(:research_material_time) }
     it { should respond_to(:research_productivity_time) }
     it { should respond_to(:copy_time) }
+    it { should respond_to(:metalevel) }
 
     it { should respond_to(:materials) }
     it { should respond_to(:skills) }

@@ -83,8 +83,8 @@ Item::Blueprint.blueprint do
   research_material_time { 1300 }
   research_productivity_time { 1300 }
   copy_time { 800 }
-  product_type
-  blueprint_type
+  product
+  blueprint
 end
 
 Item::BlueprintMaterial.blueprint do

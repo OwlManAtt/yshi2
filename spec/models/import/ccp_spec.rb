@@ -89,4 +89,15 @@ describe Import::CCP do
     it { should respond_to(:etl_map) }
   end
 
+  describe Import::CCP::DgmTypeAttribute do
+    subject {Import::CCP::DgmTypeAttribute.new }
+    
+    it { should respond_to(:typeID) }
+    it { should respond_to(:attributeID) }
+    it { should respond_to(:valueInt) }
+    it { should respond_to(:valueFloat) }
+
+    it { should respond_to(:value) }
+  end
+
 end

@@ -16,7 +16,7 @@ module Import::CCP
     def self.process
       self.clear_tables
       self.copy_tables 
-      self.flag_bp
+      self.set_item_attributes
       self.copy_bill_of_materials
     end
 
@@ -35,8 +35,23 @@ module Import::CCP
       end
     end
 
-    def self.flag_bp
+    def self.set_item_attributes
       Item::Type.scoped(:joins => :group, :conditions => { :item_groups => {:category_id => 9} }).update_all(:blueprint => true) 
+
+      # Summarize all of the item -> metalevels into metaleval -> [item list]. This way,
+      # we end up with 17 UPDATE statements to run instead of Item::Type.size UPDATEs.
+      metalevels = {} 
+      Import::CCP::DgmTypeAttribute.where(:attributeID => 633).each do |import|
+        unless metalevels.has_key? import.value
+          metalevels[import.value] = []
+        end
+
+        metalevels[import.value] << import.typeID
+      end
+
+      metalevels.each do |metalevel, items|
+        Item::Type.where(:id => items).update_all(:metalevel => metalevel)
+      end
     end
 
     def self.copy_bill_of_materials
