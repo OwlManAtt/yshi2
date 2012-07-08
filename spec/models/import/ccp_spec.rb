@@ -97,8 +97,16 @@ describe Import::CCP do
     it { should respond_to(:attributeID) }
     it { should respond_to(:valueInt) }
     it { should respond_to(:valueFloat) }
+    it { should respond_to(:attribute_type) }
 
     it { should respond_to(:value) }
+  end
+
+  describe Import::CCP::DgmTypeAttribute do
+    subject { Import::CCP::DgmTypeAttribute.new }
+
+    it { should respond_to(:attributeID) }
+    it { should respond_to(:defaultValue) }
   end
 
   describe Import::CCP::InvMarketGroup do

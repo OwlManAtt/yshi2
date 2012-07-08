@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120708011203) do
+ActiveRecord::Schema.define(:version => 20120708021659) do
 
   create_table "api_keys", :force => true do |t|
     t.integer  "user_id",                                                     :null => false
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(:version => 20120708011203) do
     t.datetime "updated_at",                                                                       :null => false
     t.boolean  "blueprint",                                                     :default => false, :null => false
     t.integer  "metalevel"
+    t.integer  "techlevel"
   end
 
   create_table "users", :force => true do |t|

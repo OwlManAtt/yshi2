@@ -39,20 +39,27 @@ module Import::CCP
     def self.set_item_attributes
       Item::Type.scoped(:joins => :group, :conditions => { :item_groups => {:category_id => 9} }).update_all(:blueprint => true) 
 
-      # Summarize all of the item -> metalevels into metaleval -> [item list]. This way,
-      # we end up with 17 UPDATE statements to run instead of Item::Type.size UPDATEs.
-      metalevels = {} 
-      Import::CCP::DgmTypeAttribute.where(:attributeID => 633).each do |import|
-        unless metalevels.has_key? import.value
-          metalevels[import.value] = []
+      {
+        :meta_level => :metalevel,
+        :tech_level => :techlevel, 
+      }.each do |scope, attr_name|
+        # Summarize the data so we only need to do a few updates instead of one per
+        # item type.
+        lookup = {} 
+        attr = Import::CCP::DgmAttributeType.send(scope)
+
+        attr.attributes.each do |import|
+          lookup[import.value] = [] unless lookup.has_key? import.value
+          lookup[import.value] << import.typeID
         end
 
-        metalevels[import.value] << import.typeID
-      end
+        lookup.each do |attr_value, items|
+          Item::Type.where(:id => items).update_all(attr_name => attr_value)
+        end
 
-      metalevels.each do |metalevel, items|
-        Item::Type.where(:id => items).update_all(:metalevel => metalevel)
-      end
+        # And then handle the defaults when no attribute is specified.
+        Item::Type.where(attr_name => nil).update_all(attr_name => attr.defaultValue)
+      end # attributes
     end
 
     def self.copy_bill_of_materials
