@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120708021659) do
+ActiveRecord::Schema.define(:version => 20120708185647) do
 
   create_table "api_keys", :force => true do |t|
     t.integer  "user_id",                                                     :null => false
@@ -132,6 +132,25 @@ ActiveRecord::Schema.define(:version => 20120708021659) do
     t.boolean  "blueprint",                                                     :default => false, :null => false
     t.integer  "metalevel"
     t.integer  "techlevel"
+  end
+
+  create_table "map_constellations", :force => true do |t|
+    t.integer "region_id",                :null => false
+    t.string  "name",      :limit => 100, :null => false
+  end
+
+  create_table "map_regions", :force => true do |t|
+    t.string "name", :limit => 100, :null => false
+  end
+
+  create_table "map_solar_systems", :force => true do |t|
+    t.integer "constellation_id",                :null => false
+    t.string  "name",             :limit => 100, :null => false
+  end
+
+  create_table "map_stations", :force => true do |t|
+    t.integer "solar_system_id",                :null => false
+    t.string  "name",            :limit => 100, :null => false
   end
 
   create_table "users", :force => true do |t|

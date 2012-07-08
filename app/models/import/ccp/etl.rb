@@ -6,6 +6,10 @@ module Import::CCP
       Import::CCP::InvType => Item::Type,
       Import::CCP::InvBlueprintType => Item::Blueprint,
       Import::CCP::InvMarketGroup => Item::MarketGroup,
+      Import::CCP::MapRegion => Map::Region,
+      Import::CCP::MapConstellation => Map::Constellation,
+      Import::CCP::MapSolarSystem => Map::SolarSystem,
+      Import::CCP::StaStation => Map::Station,
     }
 
     CUSTOM_IMPORT_TABLES = [
