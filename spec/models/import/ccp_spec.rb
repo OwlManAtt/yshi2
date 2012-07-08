@@ -45,6 +45,7 @@ describe Import::CCP do
     it { should respond_to(:volume) }
     it { should respond_to(:capacity) }
     it { should respond_to(:radius) }
+    it { should respond_to(:marketGroupID) }
     it { should respond_to(:inv_group) }
     
     it { should respond_to(:etl_map) }
@@ -98,6 +99,17 @@ describe Import::CCP do
     it { should respond_to(:valueFloat) }
 
     it { should respond_to(:value) }
+  end
+
+  describe Import::CCP::InvMarketGroup do
+    subject { Import::CCP::InvMarketGroup.new } 
+
+    it { should respond_to(:marketGroupID) }
+    it { should respond_to(:parentGroupID) }
+    it { should respond_to(:marketGroupName) }
+    it { should respond_to(:description) }
+
+    it { should respond_to(:etl_map) }
   end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120708000758) do
+ActiveRecord::Schema.define(:version => 20120708011203) do
 
   create_table "api_keys", :force => true do |t|
     t.integer  "user_id",                                                     :null => false
@@ -108,6 +108,12 @@ ActiveRecord::Schema.define(:version => 20120708000758) do
     t.integer  "category_id",                  :null => false
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
+  end
+
+  create_table "item_market_groups", :force => true do |t|
+    t.integer "parent_id"
+    t.string  "name",        :limit => 50, :null => false
+    t.text    "description"
   end
 
   create_table "item_types", :force => true do |t|

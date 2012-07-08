@@ -20,7 +20,7 @@ describe Item do
     end
 
     it "should have a market group" do
-      item = item::Type.make!
+      item = Item::Type.make!
       item.market_group.should_not be nil
     end
   end # Type
@@ -58,14 +58,15 @@ describe Item do
     end
   end # Category
 
-#  describe Item::MarketGroup do
-#    subject { Item::MarketGroup.new }
-#
-#    it { should respond_to(:name) }
-#    it { should respond_to(:description) }
-#    it { should respond_to(:parent) }
-#    it { should respond_to(:children) }
-#  end
+  describe Item::MarketGroup do
+    subject { Item::MarketGroup.new }
+
+    it { should respond_to(:name) }
+    it { should respond_to(:description) }
+    it { should respond_to(:parent) }
+    it { should respond_to(:children) }
+    it { should respond_to(:types) }
+  end
 
   describe Item::Blueprint do
     subject { Item::Blueprint.new }

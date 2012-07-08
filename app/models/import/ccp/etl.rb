@@ -5,6 +5,7 @@ module Import::CCP
       Import::CCP::InvGroup => Item::Group,
       Import::CCP::InvType => Item::Type,
       Import::CCP::InvBlueprintType => Item::Blueprint,
+      Import::CCP::InvMarketGroup => Item::MarketGroup,
     }
 
     CUSTOM_IMPORT_TABLES = [

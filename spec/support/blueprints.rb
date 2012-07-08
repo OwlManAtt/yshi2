@@ -60,6 +60,7 @@ Item::Type.blueprint do
   npc_price { 1000.00 }
   blueprint { false }
   group 
+  market_group
 end
 
 Item::Group.blueprint do
@@ -99,4 +100,10 @@ Item::BlueprintSkill.blueprint do
   minimum_level { 1 }
   blueprint
   skill
+end
+
+Item::MarketGroup.blueprint do
+  parent_id { nil }
+  name { "Market Group" }
+  description { "A group on the market." }
 end

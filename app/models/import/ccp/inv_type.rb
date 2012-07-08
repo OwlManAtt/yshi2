@@ -21,6 +21,7 @@ module Import::CCP
         :units_per_run => portionSize,
         :npc_price => basePrice,
         :group_id => groupID,
+        :market_group_id => marketGroupID,
       }
     end # etl_map
   end
